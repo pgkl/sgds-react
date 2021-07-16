@@ -1,33 +1,44 @@
-import * as React from 'react';
+import React from 'react';
+import styled from '@emotion/styled';
 
-export interface ButtonProps {
+export type ButtonProps = {
   children: React.ReactNode;
-  primary?: boolean;
+  secondary?: boolean;
+  fixedWidth?: boolean;
   onClick?: () => void;
-  backgroundColor?: string;
-  color?: string;
-}
-
-export const Button = ({
-  children,
-  primary = false,
-  onClick,
-  backgroundColor = '#D1D5DB',
-  color = '#1F2937',
-}: ButtonProps): JSX.Element => {
-  const buttonStyles = {
-    fontWeight: 700,
-    padding: '10px 20px',
-    border: 0,
-    cursor: 'pointer',
-    display: 'inline-block',
-    lineHeight: 1,
-    backgroundColor: primary ? '#2563EB' : backgroundColor,
-    color: primary ? '#F3F4F6' : color,
-  };
-  return (
-    <button type="button" onClick={onClick} style={buttonStyles}>
-      {children}
-    </button>
-  );
 };
+
+const primaryBgColor = '#0065bd';
+const secondaryBgColor = 'transparent';
+const primaryBgHover = '#00437e';
+const secondaryBgHover = '#d9effc';
+const primaryColor = '#ffffff';
+const secondaryColor = primaryBgColor;
+const secondaryColorHover = primaryBgHover;
+
+export const Button = styled.button<ButtonProps>`
+  color: ${(props) => (props.secondary ? secondaryColor : primaryColor)};
+  background-color: ${(props) => (props.secondary ? secondaryBgColor : primaryBgColor)};
+  width: ${(props) => (props.fixedWidth ? '200px' : undefined)};
+  border: 0;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 700;
+  line-height: 24px;
+  min-height: 56px;
+  min-width: 56px;
+  outline-width: 0;
+  padding: 16px;
+  position: relative;
+  text-alin: center;
+  text-decoration: none;
+  transition: background-color 0.2s;
+  outline: ${(props) => (props.secondary ? '2px solid currentColor' : 0)};
+  outline-offset: ${(props) => (props.secondary ? '-2px' : 0)};
+  &:hover {
+      background-color: ${(props) => (props.secondary ? secondaryBgHover : primaryBgHover)};
+      color: ${(props) => (props.secondary ? secondaryColorHover : undefined)};
+  }
+`;
+
+export default Button;
