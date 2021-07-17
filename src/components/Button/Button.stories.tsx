@@ -9,7 +9,7 @@ export default {
   component: Button,
   description: 'A button.',
   argTypes: {
-    secondary: { control: 'boolean' },
+    buttonType: { options: ['primary', 'secondary', 'cancel', 'disabled' ], control: { type: 'radio' }},
   },
 } as Meta;
 
@@ -18,11 +18,13 @@ const Template: Story<ButtonProps> = (args) => <Button {...args}>Click me</Butto
 
 // 👇 Each story then reuses that template
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  buttonType: 'primary'
+};
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  secondary: true,
+  buttonType: 'secondary',
 };
 
 export const OnClick = Template.bind({});
