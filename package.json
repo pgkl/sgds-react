@@ -1,6 +1,6 @@
 {
   "name": "sgds-react",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Peter Liddiard <peter.liddiard@gov.scot>",
   "license": "MIT",
   "main": "lib/index.js",
