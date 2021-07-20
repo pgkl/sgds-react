@@ -107,3 +107,5 @@ export const Button = ({
     {children}
   </StyledButton>
 );
+
+export default Button;
